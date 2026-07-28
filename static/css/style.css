@@ -1,0 +1,279 @@
+/* ===== VARIABLES ===== */
+:root {
+    --hacker-color: #00ff41;
+    --bg-color: #0a0e0a;
+    --color-peligro: #ff3b3b;
+    --color-advertencia: #ffb800;
+}
+
+/* ===== RESET Y BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--hacker-color);
+    font-family: 'Courier New', Courier, monospace;
+    min-height: 100vh;
+    padding: 40px 20px;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        color-mix(in srgb, var(--hacker-color) 3%, transparent),
+        color-mix(in srgb, var(--hacker-color) 3%, transparent) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 999;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+    color: var(--hacker-color);
+    text-shadow:
+        0 0 5px var(--hacker-color),
+        0 0 15px var(--hacker-color),
+        0 0 30px color-mix(in srgb, var(--hacker-color) 40%, transparent);
+}
+
+.container {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+    background-color: color-mix(in srgb, var(--hacker-color) 8%, var(--bg-color));
+    border: 1px solid var(--hacker-color);
+    border-radius: 4px;
+    padding: 30px;
+    box-shadow:
+        0 0 10px color-mix(in srgb, var(--hacker-color) 20%, transparent),
+        inset 0 0 20px color-mix(in srgb, var(--hacker-color) 5%, transparent);
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: var(--hacker-color);
+    opacity: 0.85;
+}
+
+label::before {
+    content: "> ";
+}
+
+/* ===== INPUT DE CONTRASEÑA CON BOTÓN ===== */
+.password-wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+input {
+    flex: 1;
+    padding: 10px 12px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--hacker-color);
+    border-radius: 2px;
+    color: var(--hacker-color);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    transition: box-shadow 0.2s ease;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 8px color-mix(in srgb, var(--hacker-color) 60%, transparent);
+}
+
+.btn-toggle {
+    background-color: transparent;
+    border: 1px solid var(--hacker-color);
+    border-radius: 2px;
+    color: var(--hacker-color);
+    padding: 0 15px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+/* ===== BOTON ANALIZAR ===== */
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: transparent;
+    border: 1px solid var(--hacker-color);
+    border-radius: 2px;
+    color: var(--hacker-color);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--hacker-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--hacker-color) 70%, transparent);
+}
+
+#message {
+    margin-top: 15px;
+    min-height: 20px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* ===== RESULTADO ===== */
+.resultado-oculto {
+    display: none;
+}
+
+.puntaje-container {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.puntaje-numero {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px currentColor;
+}
+
+.puntaje-categoria {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.barra-fondo {
+    width: 100%;
+    height: 12px;
+    background-color: color-mix(in srgb, var(--hacker-color) 10%, var(--bg-color));
+    border: 1px solid var(--hacker-color);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.barra-relleno {
+    height: 100%;
+    width: 0%;
+    transition: width 0.6s ease, background-color 0.3s ease;
+    border-radius: 6px;
+}
+
+.nivel-muy-debil {
+    background-color: var(--color-peligro);
+    box-shadow: 0 0 10px var(--color-peligro);
+}
+
+.nivel-debil {
+    background-color: #ff7b3b;
+    box-shadow: 0 0 10px #ff7b3b;
+}
+
+.nivel-aceptable {
+    background-color: var(--color-advertencia);
+    box-shadow: 0 0 10px var(--color-advertencia);
+}
+
+.nivel-fuerte {
+    background-color: #7fff41;
+    box-shadow: 0 0 10px #7fff41;
+}
+
+.nivel-muy-fuerte {
+    background-color: var(--hacker-color);
+    box-shadow: 0 0 10px var(--hacker-color);
+}
+
+/* ===== GRID DE DETALLES ===== */
+.detalle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.detalle-item {
+    background-color: color-mix(in srgb, var(--hacker-color) 5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--hacker-color) 30%, transparent);
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detalle-label {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.detalle-valor {
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+/* ===== SECCIONES DE PROBLEMAS/SUGERENCIAS ===== */
+.seccion {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid color-mix(in srgb, var(--hacker-color) 20%, transparent);
+}
+
+.seccion h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.seccion ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.seccion li {
+    padding: 6px 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    padding-left: 20px;
+    position: relative;
+}
+
+.seccion li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    opacity: 0.6;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 500px) {
+    .detalle-grid {
+        grid-template-columns: 1fr;
+    }
+}

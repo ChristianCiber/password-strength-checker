@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Password Strength Checker</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+
+<body>
+
+
+    <h1>
+        PASSWORD STRENGTH CHECKER
+    </h1>
+
+
+    <div class="container">
+
+
+        <label>
+            Ingresa tu contraseña
+        </label>
+
+        <div class="password-wrapper">
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Escribe aquí..."
+                autocomplete="off"
+            >
+
+            <button type="button" id="toggle-visibility" class="btn-toggle">
+                👁
+            </button>
+
+        </div>
+
+
+        <button onclick="analizar()">
+            ANALIZAR
+        </button>
+
+
+        <p id="message"></p>
+
+
+        <div id="resultado" class="resultado-oculto">
+
+
+            <div class="puntaje-container">
+
+                <div class="puntaje-numero" id="puntaje-numero">
+                    0
+                </div>
+
+                <div class="puntaje-categoria" id="puntaje-categoria">
+                    -
+                </div>
+
+                <div class="barra-fondo">
+                    <div class="barra-relleno" id="barra-relleno"></div>
+                </div>
+
+            </div>
+
+
+            <div class="detalle-grid">
+
+                <div class="detalle-item">
+                    <span class="detalle-label">Entropía</span>
+                    <span class="detalle-valor" id="valor-entropia">-</span>
+                </div>
+
+                <div class="detalle-item">
+                    <span class="detalle-label">Tiempo de crackeo</span>
+                    <span class="detalle-valor" id="valor-tiempo">-</span>
+                </div>
+
+                <div class="detalle-item">
+                    <span class="detalle-label">Longitud</span>
+                    <span class="detalle-valor" id="valor-longitud">-</span>
+                </div>
+
+                <div class="detalle-item">
+                    <span class="detalle-label">Filtraciones</span>
+                    <span class="detalle-valor" id="valor-filtracion">-</span>
+                </div>
+
+            </div>
+
+
+            <div class="seccion" id="seccion-problemas">
+
+                <h3>⚠ Problemas detectados</h3>
+
+                <ul id="lista-problemas"></ul>
+
+            </div>
+
+
+            <div class="seccion" id="seccion-sugerencias">
+
+                <h3>💡 Cómo mejorarla</h3>
+
+                <ul id="lista-sugerencias"></ul>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script src="/static/js/script.js"></script>
+
+
+</body>
+
+</html>
